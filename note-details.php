@@ -1,3 +1,77 @@
+<?php
+// Include the database connection file
+require_once 'db_connection.php';
+
+// Start session
+session_start();
+
+// Check if user is logged in, if not redirect to login page
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Check if note ID is provided
+if (!isset($_GET['note_id'])) {
+    header("Location: manage_notes.php"); // Redirect to manage notes page if note ID is not provided
+    exit();
+}
+
+// Get the note ID from the URL
+$note_id = $_GET['note_id'];
+
+// Query database to fetch note details
+$user_id = $_SESSION['user_id'];
+$query = "SELECT * FROM notes WHERE user_id = $user_id AND note_id = $note_id";
+$result = mysqli_query($conn, $query);
+
+// Check if the query was successful and note exists
+if (!$result || mysqli_num_rows($result) == 0) {
+    header("Location: manage_notes.php"); // Redirect to manage notes page if note does not exist
+    exit();
+}
+
+// Fetch note details
+$note = mysqli_fetch_assoc($result);
+
+// Fetch note content
+$note_content = $note['content'];
+?>
+
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Add your head content here -->
+</head>
+
+<body>
+    <!-- Header -->
+    <!-- Add your header code here -->
+
+    <!-- Note Details Section -->
+    <section class="note-details-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Note Details</h1>
+                    <h3>Subject: <?php echo $note['subject']; ?></h3>
+                    <h4>Title: <?php echo $note['title']; ?></h4>
+                    <p><?php echo $note_content; ?></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Add your footer code here -->
+
+    <!-- Scripts -->
+    <!-- Add your script links here -->
+</body>
+
+</html>
+<!
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 

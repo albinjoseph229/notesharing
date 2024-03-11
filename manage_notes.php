@@ -155,50 +155,50 @@ if (!$result) {
         </div>
     </section>
 
-<!-- Manage Notes Section -->
-<section class="contact-page-area section-gap">
-    <div class="container">
-        <h1>Your Notes</h1>
+    <!-- Manage Notes Section -->
+    <section class="contact-page-area section-gap">
+        <div class="container">
+            <h1>Your Notes</h1>
 
-        <div style="margin: 0 auto;">
-            <table style="width: 100%;"> <!-- Set the width of the table to 100% -->
-                <tr>
-                    <th style="width: 15%;">Subject</th>
-                    <th style="width: 15%;">Title</th>
-                    <th style="width: 55%;">Content</th> <!-- Increased width for the content column -->
-                    <th style="width: 10%;">Added Date</th>
-                    <th style="width: 10%;">Download</th>
-                    <th style="width: 5%;">Action</th> <!-- Adjusted width for better alignment -->
-                </tr>
-                <?php
-                if ($result && mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . $row['subject'] . "</td>";
-                        echo "<td>" . $row['title'] . "</td>";
-                        echo "<td>" . $row['content'] . "</td>"; // Display content
-                        echo "<td>" . $row['created_at'] . "</td>";
-                        echo "<td>";
-                        // Add download link
-                        echo "<a href='" . $row['file_path'] . "' download>Download Note</a>";
-                        echo "</td>";
-                        echo "<td>";
-                        // Add delete button with form
-                        echo "<form action='delete_note.php' method='POST'>";
-                        echo "<input type='hidden' name='note_id' value='" . $row['note_id'] . "' />";
-                        echo "<button type='submit' name='delete'>Delete</button>";
-                        echo "</form>";
-                        echo "</td>";
-                        echo "</tr>";
+            <div style="margin: 0 auto;">
+                <table style="width: 100%;"> <!-- Set the width of the table to 100% -->
+                    <tr>
+                        <th style="width: 15%;">Subject</th>
+                        <th style="width: 15%;">Title</th>
+                        <th style="width: 40%;">Note Details</th> <!-- Increased width for the content column -->
+                        <th style="width: 10%;">Added Date</th>
+                        <th style="width: 10%;">Download</th>
+                        <th style="width: 5%;">Action</th> <!-- Adjusted width for better alignment -->
+                    </tr>
+                    <?php
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td>" . $row['subject'] . "</td>";
+                            echo "<td>" . $row['title'] . "</td>";
+                            echo "<td><a href='note-details.php?note_id=" . $row['note_id'] . "'>View Details</a></td>"; // Redirect to note-details.php page
+                            echo "<td>" . $row['created_at'] . "</td>";
+                            echo "<td>";
+                            // Add download link
+                            echo "<a href='" . $row['file_path'] . "' download>Download Note</a>";
+                            echo "</td>";
+                            echo "<td>";
+                            // Add delete button with form
+                            echo "<form action='delete_note.php' method='POST'>";
+                            echo "<input type='hidden' name='note_id' value='" . $row['note_id'] . "' />";
+                            echo "<button type='submit' name='delete'>Delete</button>";
+                            echo "</form>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='6'>You have not uploaded any notes yet.</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='6'>You have not uploaded any notes yet.</td></tr>";
-                }
-                ?>
-            </table>
+                    ?>
+                </table>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
