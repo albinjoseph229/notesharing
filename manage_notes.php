@@ -42,6 +42,7 @@ if (!$result) {
     <!-- Site Title -->
     <title>Contacts</title>
 
+
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
     <!-- CSS -->
     <link rel="stylesheet" href="css/linearicons.css" />
@@ -180,13 +181,13 @@ if (!$result) {
                             echo "<td>" . $row['created_at'] . "</td>";
                             echo "<td>";
                             // Add download link
-                            echo "<a href='" . $row['file_path'] . "' download>Download Note</a>";
+                            echo "<a href='download.php?file=" . urlencode(basename($row['file_path'])) . "'>Download Note</a>";
                             echo "</td>";
                             echo "<td>";
                             // Add delete button with form
                             echo "<form action='delete_note.php' method='POST'>";
                             echo "<input type='hidden' name='note_id' value='" . $row['note_id'] . "' />";
-                            echo "<button type='submit' name='delete'>Delete</button>";
+                            echo "<button type='submit' class='btn btn-danger' name='delete'>Delete</button>";
                             echo "</form>";
                             echo "</td>";
                             echo "</tr>";

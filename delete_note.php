@@ -22,7 +22,7 @@ if (isset($_POST['note_id']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result) {
         // If deletion was successful, redirect back to the profile page
-        header("Location: profile.php");
+        header("Location: manage_notes.php");
         exit();
     } else {
         // If deletion failed, display an error message
