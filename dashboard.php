@@ -121,12 +121,14 @@ if (isset($_POST['logout'])) {
         <div class="search-input" id="search-input-box">
     <div class="container">
         <form class="d-flex justify-content-between" action="search_results.php" method="GET">
-            <input type="text" class="form-control" id="search-input" name="search_query" placeholder="Search Here" />
+            <input type="text" class="form-control" id="search-input" name="search" placeholder="Search Here" />
             <button type="submit" class="btn">Search</button>
-            <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
+            <span class="lnr lnr-cross" id="close-search" title="Close Search" style="margin-right: -5px;"></span>
         </form>
     </div>
 </div>
+
+
 
     </header>
     <!-- ================ End Header Area ================= -->
