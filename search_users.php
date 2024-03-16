@@ -56,21 +56,35 @@ if (!$result) {
     <link rel="stylesheet" href="css/main.css" />
     <!-- Add your CSS links here -->
     <style>
-        table {
-            width: 80%;
-            /* Adjust the width of the table here */
-            border-collapse: collapse;
+        .search-form {
+            width: 100%;
+            max-width: 400px; /* Adjust as needed */
+            margin: 0 auto; /* Center the form horizontally */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+        input[type="text"] {
+            width: calc(100% - 85px); /* Adjust for button width and padding */
+            padding: 10px;
+            margin-right: 10px; /* Add spacing between input and button */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-
-        th {
-            background-color: #f2f2f2;
+        button[type="submit"] {
+            width: 75px; /* Adjust as needed */
+            padding: 10px;
+            background-color: #28a745; /* Bootstrap success color */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838; /* Darker shade of green */
         }
     </style>
 </head>
@@ -156,50 +170,16 @@ if (!$result) {
         </div>
     </section>
 
-    <!-- Manage Notes Section -->
-    <section class="contact-page-area section-gap">
-        <div class="container">
-            <h1>Your Notes</h1>
+    <!-- search Section -->
+    <div class="container">
+        <form action="search_results.php" method="GET">
+            <label for="search">Search by Username or Email:</label>
+            <input type="text" id="search" name="search" class="form-control" required>
+            <button type="submit" class="btn btn-success btn-lg">Search</button>
+        </form>
+    </div>
 
-            <div style="margin: 0 auto;">
-                <table style="width: 100%;"> <!-- Set the width of the table to 100% -->
-                    <tr>
-                        <th style="width: 15%;">Subject</th>
-                        <th style="width: 15%;">Title</th>
-                        <th style="width: 40%;">Note Details</th> <!-- Increased width for the content column -->
-                        <th style="width: 10%;">Added Date</th>
-                        <th style="width: 10%;">Download</th>
-                        <th style="width: 5%;">Action</th> <!-- Adjusted width for better alignment -->
-                    </tr>
-                    <?php
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['subject'] . "</td>";
-                            echo "<td>" . $row['title'] . "</td>";
-                            echo "<td><a href='note-details.php?note_id=" . $row['note_id'] . "'>View Details</a></td>"; // Redirect to note-details.php page
-                            echo "<td>" . $row['created_at'] . "</td>";
-                            echo "<td>";
-                            // Add download link
-                            echo "<a href='download.php?file=" . urlencode(basename($row['file_path'])) . "'>Download Note</a>";
-                            echo "</td>";
-                            echo "<td>";
-                            // Add delete button with form
-                            echo "<form action='delete_note.php' method='POST'>";
-                            echo "<input type='hidden' name='note_id' value='" . $row['note_id'] . "' />";
-                            echo "<button type='submit' class='btn btn-danger' name='delete'>Delete</button>";
-                            echo "</form>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='6'>You have not uploaded any notes yet.</td></tr>";
-                    }
-                    ?>
-                </table>
-            </div>
-        </div>
-    </section>
+    <!-- end search Section -->
 
 
 
@@ -223,6 +203,10 @@ if (!$result) {
     <script src="js/waypoints.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/main.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

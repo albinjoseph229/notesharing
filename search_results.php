@@ -139,10 +139,10 @@ if (!$result) {
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Manage Notes
+                    Search Results
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
-                        Here you can manage your notes.
+                        The Results For Your Search Will Appear Here.
                     </p>
                     <div class="link-nav">
                         <span class="box">
@@ -156,52 +156,56 @@ if (!$result) {
         </div>
     </section>
 
-    <!-- Manage Notes Section -->
+    <!-- search results sectionS-->
     <section class="contact-page-area section-gap">
         <div class="container">
-            <h1>Your Notes</h1>
 
+            <!-- Your existing code to display user's notes -->
+            <!-- Replace this part with the code below -->
+
+            <h1>Search Results</h1>
+            <br>
             <div style="margin: 0 auto;">
                 <table style="width: 100%;"> <!-- Set the width of the table to 100% -->
                     <tr>
-                        <th style="width: 15%;">Subject</th>
-                        <th style="width: 15%;">Title</th>
-                        <th style="width: 40%;">Note Details</th> <!-- Increased width for the content column -->
-                        <th style="width: 10%;">Added Date</th>
-                        <th style="width: 10%;">Download</th>
-                        <th style="width: 5%;">Action</th> <!-- Adjusted width for better alignment -->
+                        <th>Username</th>
+                        <th>Email</th> <!-- New column for email -->
+                        <th>Joined Date</th> <!-- New column for joined date -->
+                        <th>Action</th>
                     </tr>
                     <?php
-                    if ($result && mysqli_num_rows($result) > 0) {
+                    // Your search query code
+                    if (isset($_GET['search'])) {
+                        $search = $_GET['search'];
+                        $query = "SELECT * FROM users WHERE username LIKE '%$search%' OR email LIKE '%$search%'";
+                        $result = mysqli_query($conn, $query);
+                        // Display search results
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
-                            echo "<td>" . $row['subject'] . "</td>";
-                            echo "<td>" . $row['title'] . "</td>";
-                            echo "<td><a href='note-details.php?note_id=" . $row['note_id'] . "'>View Details</a></td>"; // Redirect to note-details.php page
-                            echo "<td>" . $row['created_at'] . "</td>";
+                            echo "<td>{$row['username']}</td>"; // Display username
+                            echo "<td>{$row['email']}</td>"; // Display email
+                            echo "<td>{$row['created_at']}</td>"; // Display joined date
+                            // Add a button to visit the user's profile
                             echo "<td>";
-                            // Add download link
-                            echo "<a href='download.php?file=" . urlencode(basename($row['file_path'])) . "'>Download Note</a>";
-                            echo "</td>";
-                            echo "<td>";
-                            // Add delete button with form
-                            echo "<form action='delete_note.php' method='POST'>";
-                            echo "<input type='hidden' name='note_id' value='" . $row['note_id'] . "' />";
-                            echo "<button type='submit' class='btn btn-danger' name='delete'>Delete</button>";
+                            echo "<form method='post' action='follow.php'>";
+                            echo "<input type='hidden' name='followed_user_id' value='{$row['user_id']}'>";
+                            echo "<button type='submit' name='follow'>Follow</button>";
+                            echo "</form>";
+
+                            // Add follow button
+                            echo "<form method='get' action='user_profile.php'>";
+                            echo "<input type='hidden' name='user_id' value='{$row['user_id']}'>";
+                            echo "<button type='submit'>Visit Profile</button>";
                             echo "</form>";
                             echo "</td>";
                             echo "</tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='6'>You have not uploaded any notes yet.</td></tr>";
                     }
                     ?>
                 </table>
             </div>
         </div>
     </section>
-
-
 
     <!-- Footer -->
     <footer class="footer-area section-gap">
