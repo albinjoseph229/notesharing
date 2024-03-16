@@ -83,63 +83,9 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
 </head>
 
 <body>
-	<!-- ================ Start Header Area ================= -->
-	<header class="default-header">
-		<nav class="navbar navbar-expand-lg  navbar-light">
-			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="img/logo.png" alt="" />
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="lnr lnr-menu"></span>
-				</button>
-
-				<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
-					<ul class="navbar-nav">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="courses.html">Courses</a></li>
-						<!-- Dropdown -->
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">
-								Pages
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="elements.html">Elements</a>
-								<a class="dropdown-item" href="course-details.html">Course Details</a>
-							</div>
-						</li>
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">
-								Blog
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="blog-home.html">Manage Notes</a>
-								<a class="dropdown-item" href="blog-single.html">Note Details</a>
-							</div>
-						</li>
-						<li><a href="contacts.html">Contacts</a></li>
-
-						<li>
-							<button class="search">
-								<span class="lnr lnr-magnifier" id="search"></span>
-							</button>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<div class="search-input" id="search-input-box">
-			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search-input" placeholder="Search Here" />
-					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
-				</form>
-			</div>
-		</div>
-	</header>
-	<!-- ================ End Header Area ================= -->
+	<?php
+	include('header.php');
+	?>
 
 	<!-- ================ start banner Area ================= -->
 	<section class="banner-area">
@@ -150,7 +96,7 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
 						Note Details
 					</h1>
 					<p class="mx-auto text-white  mt-20 mb-40">
-						
+
 					</p>
 					<div class="link-nav">
 						<span class="box">
@@ -168,33 +114,33 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
 	<!-- ================ End banner Area ================= -->
 
 	<section class="post-content-area single-post-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-11 posts-list"> <!-- Increased the width from col-lg-8 to col-lg-9 -->
-                <div class="single-post row">
-                    <!-- Meta Details -->
-                    <div class="col-lg-3 col-md-3 meta-details">
-                        <div class="user-details row">
-                            <p class="user-name col-lg-12 col-md-12 col-6"><a href="#"><?php echo isset($user['username']) ? $user['username'] : ''; ?></a> <span class="lnr lnr-user"></span></p>
-                            <p class="date col-lg-12 col-md-12 col-6"><a href="#"><?php echo $note['created_at']; ?></a> <span class="lnr lnr-calendar-full"></span></p>
-                        </div>
-                    </div>
-                    <!-- Post Content -->
-                    <div class="col-lg-9 col-md-9">
-                        <h3 class="mt-20 mb-20"><?php echo $note['title']; ?></h3>
-                        <h4 class="mt-20 mb-20"><?php echo $note['subject']; ?></h4>
-                        <p class="excert"><?php echo $note_content; ?></p>
-                        <!-- Provide download link for the file -->
-                        <?php if (!empty($note['file_path'])) : ?>
-                            <p>File Name: <?php echo basename($note['file_path']); ?></p>
-                            <a href="download.php?file=<?php echo urlencode($note['file_path']); ?>" download>Download File</a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-11 posts-list"> <!-- Increased the width from col-lg-8 to col-lg-9 -->
+					<div class="single-post row">
+						<!-- Meta Details -->
+						<div class="col-lg-3 col-md-3 meta-details">
+							<div class="user-details row">
+								<p class="user-name col-lg-12 col-md-12 col-6"><a href="#"><?php echo isset($user['username']) ? $user['username'] : ''; ?></a> <span class="lnr lnr-user"></span></p>
+								<p class="date col-lg-12 col-md-12 col-6"><a href="#"><?php echo $note['created_at']; ?></a> <span class="lnr lnr-calendar-full"></span></p>
+							</div>
+						</div>
+						<!-- Post Content -->
+						<div class="col-lg-9 col-md-9">
+							<h3 class="mt-20 mb-20"><?php echo $note['title']; ?></h3>
+							<h4 class="mt-20 mb-20"><?php echo $note['subject']; ?></h4>
+							<p class="excert"><?php echo $note_content; ?></p>
+							<!-- Provide download link for the file -->
+							<?php if (!empty($note['file_path'])) : ?>
+								<p>File Name: <?php echo basename($note['file_path']); ?></p>
+								<a href="download.php?file=<?php echo urlencode($note['file_path']); ?>" download>Download File</a>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 	<!-- End post-content Area -->

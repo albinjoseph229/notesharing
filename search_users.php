@@ -58,33 +58,43 @@ if (!$result) {
     <style>
         .search-form {
             width: 100%;
-            max-width: 400px; /* Adjust as needed */
-            margin: 0 auto; /* Center the form horizontally */
+            max-width: 400px;
+            /* Adjust as needed */
+            margin: 0 auto;
+            /* Center the form horizontally */
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         input[type="text"] {
-            width: calc(100% - 85px); /* Adjust for button width and padding */
+            width: calc(100% - 85px);
+            /* Adjust for button width and padding */
             padding: 10px;
-            margin-right: 10px; /* Add spacing between input and button */
+            margin-right: 10px;
+            /* Add spacing between input and button */
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
         }
+
         button[type="submit"] {
-            width: 75px; /* Adjust as needed */
+            width: 75px;
+            /* Adjust as needed */
             padding: 10px;
-            background-color: #28a745; /* Bootstrap success color */
+            background-color: #28a745;
+            /* Bootstrap success color */
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         button[type="submit"]:hover {
-            background-color: #218838; /* Darker shade of green */
+            background-color: #218838;
+            /* Darker shade of green */
         }
     </style>
 </head>
@@ -183,30 +193,9 @@ if (!$result) {
 
 
 
-    <!-- Footer -->
-    <footer class="footer-area section-gap">
-        <!-- Footer Content -->
-    </footer>
-
-    <!-- Scripts -->
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/parallax.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/hexagons.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/main.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <?php
+    include("footer.php");
+    ?>
 </body>
 
 </html>

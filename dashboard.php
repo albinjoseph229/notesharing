@@ -70,80 +70,9 @@ if (isset($_POST['logout'])) {
 </head>
 
 <body>
-    <!-- ================ Start Header Area ================= -->
-    <header class="default-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="img/logo.png" alt="" />
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="lnr lnr-menu"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li><a href="dashboard.php">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="add_note.php">Add Notes</a></li>
-                        <li><a href="manage_notes.php">Manage Notes</a></li>
-                        <li><a href="logout.php">Logout</a></li>
-                        <!-- Dropdown -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                                Pages
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="elements.html">Elements</a>
-                                <a class="dropdown-item" href="course-details.html">Course Details</a>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                                Blog
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="blog-home.html">Blog Home</a>
-                                <a class="dropdown-item" href="blog-single.html">Blog Details</a>
-                            </div>
-                        </li>
-                        <li><a href="contacts.html">Contacts</a></li>
-
-                        <li>
-                            <button class="search">
-                                <span class="lnr lnr-magnifier" id="search"></span>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="search-input" id="search-input-box">
-<<<<<<< HEAD
-    <div class="container">
-        <form class="d-flex justify-content-between" action="search_results.php" method="GET">
-            <input type="text" class="form-control" id="search-input" name="search" placeholder="Search Here" />
-            <button type="submit" class="btn">Search</button>
-            <span class="lnr lnr-cross" id="close-search" title="Close Search" style="margin-right: -5px;"></span>
-        </form>
-    </div>
-</div>
-
-
-
-=======
-            <div class="container">
-                <form class="d-flex justify-content-between">
-                    <input type="text" class="form-control" id="search-input" placeholder="Search Here" />
-                    <button type="submit" class="btn"></button>
-                    <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
->>>>>>> 625de075953bc67df17dc96918fc95b84d29ab54
-    </header>
-    <!-- ================ End Header Area ================= -->
-
+    <?php
+    include ('header.php');
+    ?>
     <!-- ================ start banner Area ================= -->
     <section class="home-banner-area">
         <div class="container">
@@ -213,43 +142,43 @@ if (isset($_POST['logout'])) {
 
     <!-- ================ Start Popular Course Area ================= -->
     <section class="popular-course-area section-gap">
-    <div class="container-fluid">
-        <div class="row justify-content-center section-title">
-            <div class="col-lg-12">
-                <h2>
-                    Your Notes
-                </h2>
-                <p>
-                    Here are the notes you have uploaded:
-                </p>
+        <div class="container-fluid">
+            <div class="row justify-content-center section-title">
+                <div class="col-lg-12">
+                    <h2>
+                        Your Notes
+                    </h2>
+                    <p>
+                        Here are the notes you have uploaded:
+                    </p>
+                </div>
+            </div>
+            <div class="owl-carousel popuar-course-carusel">
+                <?php
+                // Loop through your notes and display them
+                while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                    <div class="single-popular-course">
+                        <div class="thumb">
+                            <!-- Dummy image as cover image -->
+                            <img class="f-img img-fluid mx-auto" src="img/dummy-image.jpg" alt="" />
+                        </div>
+                        <div class="details">
+                            <div class="d-flex justify-content-between mb-20">
+                                <!-- Display subject -->
+                                <p class="name"><?php echo $row['subject']; ?></p>
+                            </div>
+                            <!-- Make the note title a link to the manage notes page -->
+                            <a href="manage_notes.php?note_id=<?php echo $row['note_id']; ?>">
+                                <!-- Display title of the note -->
+                                <h4><?php echo $row['title']; ?></h4>
+                            </a>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
-        <div class="owl-carousel popuar-course-carusel">
-            <?php
-            // Loop through your notes and display them
-            while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                <div class="single-popular-course">
-                    <div class="thumb">
-                        <!-- Dummy image as cover image -->
-                        <img class="f-img img-fluid mx-auto" src="img/dummy-image.jpg" alt="" />
-                    </div>
-                    <div class="details">
-                        <div class="d-flex justify-content-between mb-20">
-                            <!-- Display subject -->
-                            <p class="name"><?php echo $row['subject']; ?></p>
-                        </div>
-                        <!-- Make the note title a link to the manage notes page -->
-                        <a href="manage_notes.php?note_id=<?php echo $row['note_id']; ?>">
-                            <!-- Display title of the note -->
-                            <h4><?php echo $row['title']; ?></h4>
-                        </a>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- ================ End Popular Course Area ================= -->
@@ -612,102 +541,9 @@ if (isset($_POST['logout'])) {
         </div>
     </section>
     <!-- ================ End Blog Post Area ================= -->
-
-    <!-- ================ start footer Area ================= -->
-    <footer class="footer-area section-gap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2 col-md-6 single-footer-widget">
-                    <h4>Top Products</h4>
-                    <ul>
-                        <li><a href="#">Managed Website</a></li>
-                        <li><a href="#">Manage Reputation</a></li>
-                        <li><a href="#">Power Tools</a></li>
-                        <li><a href="#">Marketing Service</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 single-footer-widget">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Brand Assets</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 single-footer-widget">
-                    <h4>Features</h4>
-                    <ul>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Brand Assets</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 single-footer-widget">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Guides</a></li>
-                        <li><a href="#">Research</a></li>
-                        <li><a href="#">Experts</a></li>
-                        <li><a href="#">Agencies</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 single-footer-widget">
-                    <h4>Newsletter</h4>
-                    <p>You can trust us. we only send promo offers,</p>
-                    <div class="form-wrap" id="mc_embed_signup">
-                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-                            <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" required="" type="email" />
-                            <button class="click-btn btn btn-default text-uppercase">
-                                subscribe
-                            </button>
-                            <div style="position: absolute; left: -5000px">
-                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text" />
-                            </div>
-
-                            <div class="info"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom row align-items-center">
-                <p class="footer-text m-0 col-lg-8 col-md-12">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script>
-                    All rights reserved | This template is made with
-                    <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-                <div class="col-lg-4 col-md-12 footer-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-behance"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ================ End footer Area ================= -->
-
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/parallax.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/hexagons.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/main.js"></script>
+<?php
+include("footer.php");
+?>
 </body>
 
 </html>

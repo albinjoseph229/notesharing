@@ -1,5 +1,5 @@
-    <!-- ================ Start Header Area ================= -->
-    <header class="default-header">
+<!-- ================ Start Header Area ================= -->
+<header class="default-header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
@@ -48,12 +48,14 @@
         </nav>
         <div class="search-input" id="search-input-box">
             <div class="container">
-                <form class="d-flex justify-content-between">
-                    <input type="text" class="form-control" id="search-input" placeholder="Search Here" />
-                    <button type="submit" class="btn"></button>
-                    <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
+                <form class="d-flex justify-content-between" action="search_results.php" method="GET">
+                    <input type="text" class="form-control" id="search-input" name="search" placeholder="Search Here" />
+                    <button type="submit" class="btn">Search</button>
+                    <span class="lnr lnr-cross" id="close-search" title="Close Search" style="margin-right: -5px;"></span>
                 </form>
             </div>
         </div>
+
     </header>
     <!-- ================ End Header Area ================= -->
+    
