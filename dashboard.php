@@ -119,6 +119,7 @@ if (isset($_POST['logout'])) {
             </div>
         </nav>
         <div class="search-input" id="search-input-box">
+<<<<<<< HEAD
     <div class="container">
         <form class="d-flex justify-content-between" action="search_results.php" method="GET">
             <input type="text" class="form-control" id="search-input" name="search" placeholder="Search Here" />
@@ -130,6 +131,16 @@ if (isset($_POST['logout'])) {
 
 
 
+=======
+            <div class="container">
+                <form class="d-flex justify-content-between">
+                    <input type="text" class="form-control" id="search-input" placeholder="Search Here" />
+                    <button type="submit" class="btn"></button>
+                    <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
+                </form>
+            </div>
+        </div>
+>>>>>>> 625de075953bc67df17dc96918fc95b84d29ab54
     </header>
     <!-- ================ End Header Area ================= -->
 
@@ -202,43 +213,43 @@ if (isset($_POST['logout'])) {
 
     <!-- ================ Start Popular Course Area ================= -->
     <section class="popular-course-area section-gap">
-        <div class="container-fluid">
-            <div class="row justify-content-center section-title">
-                <div class="col-lg-12">
-                    <h2>
-                        Your Notes
-                    </h2>
-                    <p>
-                        Here are the notes you have uploaded:
-                    </p>
-                </div>
-            </div>
-            <div class="owl-carousel popuar-course-carusel">
-                <?php
-                // Loop through your notes and display them
-                while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                    <div class="single-popular-course">
-                        <div class="thumb">
-                            <!-- Dummy image as cover image -->
-                            <img class="f-img img-fluid mx-auto" src="img/dummy-image.jpg" alt="" />
-                        </div>
-                        <div class="details">
-                            <div class="d-flex justify-content-between mb-20">
-                                <!-- Display subject -->
-                                <p class="name"><?php echo $row['subject']; ?></p>
-                            </div>
-                            <!-- Make the note title a link to the manage notes page -->
-                            <a href="manage_notes.php?note_id=<?php echo $row['note_id']; ?>">
-                                <!-- Display title of the note -->
-                                <h4><?php echo $row['title']; ?></h4>
-                            </a>
-                        </div>
-                    </div>
-                <?php } ?>
+    <div class="container-fluid">
+        <div class="row justify-content-center section-title">
+            <div class="col-lg-12">
+                <h2>
+                    Your Notes
+                </h2>
+                <p>
+                    Here are the notes you have uploaded:
+                </p>
             </div>
         </div>
-    </section>
+        <div class="owl-carousel popuar-course-carusel">
+            <?php
+            // Loop through your notes and display them
+            while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <div class="single-popular-course">
+                    <div class="thumb">
+                        <!-- Dummy image as cover image -->
+                        <img class="f-img img-fluid mx-auto" src="img/dummy-image.jpg" alt="" />
+                    </div>
+                    <div class="details">
+                        <div class="d-flex justify-content-between mb-20">
+                            <!-- Display subject -->
+                            <p class="name"><?php echo $row['subject']; ?></p>
+                        </div>
+                        <!-- Make the note title a link to the manage notes page -->
+                        <a href="manage_notes.php?note_id=<?php echo $row['note_id']; ?>">
+                            <!-- Display title of the note -->
+                            <h4><?php echo $row['title']; ?></h4>
+                        </a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</section>
 
 
     <!-- ================ End Popular Course Area ================= -->
@@ -410,7 +421,61 @@ if (isset($_POST['logout'])) {
     </section>
     <!-- ================ End Feature Area ================= -->
 
+    <!-- ================ Start Testimonials Area ================= -->
+    <section class="testimonials-area section-gap">
+        <div class="container">
+            <div class="testi-slider owl-carousel" data-slider-id="1">
+                <div class="row align-items-center">
+                    <div class="col-lg-5">
+                        <div class="item">
+                            <div class="testi-item">
+                                <img src="img/quote.png" alt="" />
+                                <div class="mt-40 text">
+                                    <p>
+                                        As conscious traveling Paup ers we must always be oncerned
+                                        about our dear Mother Earth. If you think about it, you
+                                        travel across her face and She is the host to your
+                                        journey.
+                                    </p>
+                                </div>
+                                <h4>Fanny Spencer</h4>
+                                <p>Chief Executive, Amazon</p>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="offset-lg-1 col-lg-6">
+                        <img src="img/testimonial/t1.jpg" alt="" />
+                    </div>
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="col-lg-5">
+                        <div class="item">
+                            <div class="testi-item">
+                                <img src="img/quote.png" alt="" />
+                                <div class="mt-40 text">
+                                    <p>
+                                        As conscious traveling Paup ers we must always be oncerned
+                                        about our dear Mother Earth. If you think about it, you
+                                        travel across her face <br />
+                                        and She is the host to your journey.
+                                    </p>
+                                </div>
+                                <h4>Fanny Spencer</h4>
+                                <p>Chief Executive, Amazon</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="offset-lg-1 col-lg-6">
+                        <img src="img/testimonial/t1.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ End Testimonials Area ================= -->
 
     <!-- ================ Start Registration Area ================= -->
     <section class="registration-area">
@@ -454,6 +519,99 @@ if (isset($_POST['logout'])) {
     </section>
     <!-- ================ End Registration Area ================= -->
 
+    <!-- ================ Start Blog Post Area ================= -->
+    <section class="blog-post-area section-gap">
+        <div class="container-fluid">
+            <div class="feature-inner row">
+                <div class="col-lg-12">
+                    <div class="section-title text-left">
+                        <h2>
+                            Features That <br />
+                            Can Avail By Everyone
+                        </h2>
+                        <p>
+                            There is a moment in the life of any aspiring astronomer that it
+                            is time to buy that first telescope. It’s exciting to think
+                            about setting up your own viewing station.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog-post">
+                        <img src="img/blog-post/b1.jpg" class="img-fluid" alt="" />
+                        <div class="overlay"></div>
+                        <div class="top-text">
+                            <p>29th, oct, 2018</p>
+                            <p>121 likes</p>
+                            <p>05 comments</p>
+                        </div>
+                        <div class="text">
+                            <h4 class="text-white">Smart Kitchen Setup</h4>
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consec tetur adipisicing elit,
+                                    sed do.
+                                </p>
+                            </div>
+                            <a href="#" class="primary-btn">
+                                View Details
+                                <i class="fa fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt--160">
+                    <div class="single-blog-post">
+                        <img src="img/blog-post/b2.jpg" class="img-fluid" alt="" />
+                        <div class="overlay"></div>
+                        <div class="top-text">
+                            <p>29th, oct, 2018</p>
+                            <p>121 likes</p>
+                            <p>05 comments</p>
+                        </div>
+                        <div class="text">
+                            <h4 class="text-white">Smart Kitchen Setup</h4>
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consec tetur adipisicing elit,
+                                    sed do.
+                                </p>
+                            </div>
+                            <a href="#" class="primary-btn">
+                                View Details
+                                <i class="fa fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt--260">
+                    <div class="single-blog-post">
+                        <img src="img/blog-post/b3.jpg" class="img-fluid" alt="" />
+                        <div class="overlay"></div>
+                        <div class="top-text">
+                            <p>29th, oct, 2018</p>
+                            <p>121 likes</p>
+                            <p>05 comments</p>
+                        </div>
+                        <div class="text">
+                            <h4 class="text-white">Smart Kitchen Setup</h4>
+                            <div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consec tetur adipisicing elit,
+                                    sed do.
+                                </p>
+                            </div>
+                            <a href="#" class="primary-btn">
+                                View Details
+                                <i class="fa fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ End Blog Post Area ================= -->
 
     <!-- ================ start footer Area ================= -->
     <footer class="footer-area section-gap">
