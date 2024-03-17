@@ -121,7 +121,7 @@ if (isset($_GET['user_id'])) {
                         <span class="box">
                             <a href="dashboard.php">Home </a>
                             <i class="lnr lnr-arrow-right"></i>
-                            <a href="search_users.php">Serch</a>
+                            <a href="search_results.php">Serch</a>
                             <i class="lnr lnr-arrow-right"></i>
                             <a href='#'>User profile</a>
                         </span>
@@ -166,7 +166,8 @@ if (isset($_GET['user_id'])) {
                         echo "<div class='details'>";
                         echo "<div class='d-flex justify-content-between mb-20'>";
                         // Modify this line to add anchor tag with href to note-details.php
-                        echo "<h4 class='name'><a href='note-details.php?note_id=" . $note['note_id'] . "'>" . $note['subject'] . "</a></h4>";
+                        echo "<h4 class='name'><a href='note-details.php?note_id=" . $note['note_id'] . "&user_id=" . $user_id . "'>" . $note['subject'] . "</a></h4>";
+
                         echo "</div>";
                         echo "<p>" . $note['title'] . "</p>";
                         echo "</div>";

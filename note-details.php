@@ -17,12 +17,19 @@ if (!isset($_GET['note_id'])) {
 	exit();
 }
 
-// Get the note ID from the URL
-$note_id = $_GET['note_id'];
+// Get the note ID and user ID from the URL
+if (isset($_GET['note_id']) && isset($_GET['user_id'])) {
+    $note_id = $_GET['note_id'];
+    $user_id = $_GET['user_id'];
+} else {
+    // If either note_id or user_id is not provided in the URL, redirect to manage_notes.php
+    header("Location: manage_notes.php");
+    exit();
+}
 
 // Query database to fetch note details
-$user_id = $_SESSION['user_id'];
 $query = "SELECT * FROM notes WHERE user_id = $user_id AND note_id = $note_id";
+
 $result = mysqli_query($conn, $query);
 
 // Check if the query was successful and note exists

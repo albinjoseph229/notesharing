@@ -23,25 +23,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Unfollow action successful
             // Set success message
             $_SESSION['success_message'] = "You have unfollowed this user.";
-            // Redirect back to the user profile page
-            header("Location: user_profile.php?user_id=$followed_user_id");
-            exit();
+            
+            // Check if the referring page is set
+            if(isset($_SESSION['referer'])) {
+                // Redirect back to the referring page
+                $referer = $_SESSION['referer'];
+                unset($_SESSION['referer']); // unset the session variable after use
+                header("Location: $referer");
+                exit();
+            } else {
+                // If referring page is not set, redirect to user profile page
+                header("Location: user_profile.php?user_id=$followed_user_id");
+                exit();
+            }
         } else {
             // Error handling if the unfollow action fails
             $_SESSION['error_message'] = "An error occurred while unfollowing the user.";
-            header("Location: user_profile.php?user_id=$followed_user_id");
-            exit();
+            // Redirect back to the referring page
+            if(isset($_SESSION['referer'])) {
+                $referer = $_SESSION['referer'];
+                unset($_SESSION['referer']); // unset the session variable after use
+                header("Location: $referer");
+                exit();
+            } else {
+                header("Location: user_profile.php?user_id=$followed_user_id");
+                exit();
+            }
         }
     } else {
         // Handle error if followed_user_id is not provided
         $_SESSION['error_message'] = "Followed user ID is missing.";
-        header("Location: user_profile.php");
-        exit();
+        // Redirect back to the referring page
+        if(isset($_SESSION['referer'])) {
+            $referer = $_SESSION['referer'];
+            unset($_SESSION['referer']); // unset the session variable after use
+            header("Location: $referer");
+            exit();
+        } else {
+            header("Location: user_profile.php");
+            exit();
+        }
     }
 } else {
     // Handle error if the form is not submitted
     $_SESSION['error_message'] = "Form submission error.";
-    header("Location: user_profile.php");
-    exit();
+    // Redirect back to the referring page
+    if(isset($_SESSION['referer'])) {
+        $referer = $_SESSION['referer'];
+        unset($_SESSION['referer']); // unset the session variable after use
+        header("Location: $referer");
+        exit();
+    } else {
+        header("Location: user_profile.php");
+        exit();
+    }
 }
 ?>

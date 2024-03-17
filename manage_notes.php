@@ -27,6 +27,9 @@ if (!$result) {
 <html lang="zxx" class="no-js">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Notes</title>
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Favicon -->
@@ -40,7 +43,6 @@ if (!$result) {
     <!-- meta character set -->
     <meta charset="UTF-8" />
     <!-- Site Title -->
-    <title>Contacts</title>
 
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
@@ -123,7 +125,7 @@ if (!$result) {
                             echo "<tr>";
                             echo "<td>" . $row['subject'] . "</td>";
                             echo "<td>" . $row['title'] . "</td>";
-                            echo "<td><a href='note-details.php?note_id=" . $row['note_id'] . "'>View Details</a></td>"; // Redirect to note-details.php page
+                            echo "<td><a href='note-details.php?note_id=" . $row['note_id'] . "&user_id=" . $user_id . "'>View Details</a></td>";                            // Redirect to note-details.php page
                             echo "<td>" . $row['created_at'] . "</td>";
                             echo "<td>";
                             // Add download link
@@ -133,7 +135,7 @@ if (!$result) {
                             // Add delete button with form
                             echo "<form action='delete_note.php' method='POST'>";
                             echo "<input type='hidden' name='note_id' value='" . $row['note_id'] . "' />";
-                            echo "<button type='submit' class='btn btn-danger' name='delete'>Delete</button>";
+                            echo "<button type='submit' class='btn btn-outline-danger' name='delete'>Delete</button>";
                             echo "</form>";
                             echo "</td>";
                             echo "</tr>";
@@ -150,25 +152,8 @@ if (!$result) {
 
 
     <!-- Footer -->
-    <footer class="footer-area section-gap">
-        <!-- Footer Content -->
-    </footer>
+    <?php include('footer.php') ?>
 
-    <!-- Scripts -->
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/parallax.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/hexagons.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/main.js"></script>
 </body>
 
 </html>
