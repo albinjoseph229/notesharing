@@ -135,8 +135,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </form>
         <div>
+            <p>Return Home? <a href="index.php">Home</a></p>
+        </div>
+        <div>
             <p>Don't have an account? <a href="register.php">Register</a></p>
         </div>
+        
     </div>
 </body>
 

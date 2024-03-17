@@ -1,39 +1,3 @@
-<?php
-// Start session
-session_start();
-
-// Check if user is logged in, if not redirect to login page
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
-// Include the database connection file
-require_once 'db_connection.php';
-
-// Fetch user's information
-$user_id = $_SESSION['user_id'];
-$user_query = "SELECT * FROM users WHERE user_id = $user_id";
-$user_result = mysqli_query($conn, $user_query);
-$user = mysqli_fetch_assoc($user_result);
-
-// Fetch user's uploaded notes
-$query = "SELECT * FROM notes WHERE user_id = $user_id";
-$result = mysqli_query($conn, $query);
-
-// Fetch the list of people you are following
-$following_query = "SELECT * FROM follows WHERE follower_id = $user_id";
-$following_result = mysqli_query($conn, $following_query);
-
-// Logout functionality
-if (isset($_POST['logout'])) {
-    // Destroy the session
-    session_destroy();
-    // Redirect to the login page after logout
-    header("Location: login.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -51,7 +15,7 @@ if (isset($_POST['logout'])) {
     <!-- meta character set -->
     <meta charset="UTF-8" />
     <!-- Site Title -->
-    <title>Dashboard</title>
+    <title>About</title>
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
     <!--
@@ -63,120 +27,96 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/magnific-popup.css" />
     <link rel="stylesheet" href="css/owl.carousel.css" />
-    <link rel="stylesheet" href="css/nice-select.css" />
+    <link rel="stylesheet" href="css/nice-select.css">
     <link rel="stylesheet" href="css/hexagons.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" />
     <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
-    <?php
-    include('header.php');
-    ?>
+      <!-- ================ Start Header Area ================= -->
+  <header class="default-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="lnr lnr-menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="about.php">About</a></li>
+            <li><a href="register.php">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="search-input" id="search-input-box">
+      <div class="container">
+        <form class="d-flex justify-content-between">
+          <input type="text" class="form-control" id="search-input" placeholder="Search Here" />
+          <button type="submit" class="btn"></button>
+          <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
+        </form>
+      </div>
+    </div>
+  </header>
+  <!-- ================ End Header Area ================= -->
+
     <!-- ================ start banner Area ================= -->
-    <section class="home-banner-area">
+    <section class="banner-area">
         <div class="container">
-            <div class="row justify-content-center fullscreen align-items-center">
-                <div class="col-lg-5 col-md-8 home-banner-left">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Welcome, <?php echo isset($user['username']) ? $user['username'] : ''; ?>
+                        About Us
                     </h1>
-                    <p class="mx-auto text-white mt-20 mb-40">
-                    This website offers a user-friendly note-taking experience with authentication and customizable dashboards. Easily manage, view, and edit notes on any device for enhanced productivity
+                    <p class="mx-auto text-white  mt-20 mb-40">
+                       This is the about section of the website.
                     </p>
-                </div>
-                <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
-                    <img class="img-fluid" src="img/header-img.png" alt="" />
+                    <div class="link-nav">
+                        <span class="box">
+                            <a href="index.php">Home </a>
+                            <i class="lnr lnr-arrow-right"></i>
+                            <a href="about.php">About</a>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- ================ End banner Area ================= -->
 
-    <!-- ================ Start Feature Area ================= -->
-    <section class="feature-area">
-        <div class="container-fluid">
-            <div class="feature-inner row">
-                <div class="col-lg-2 col-md-6">
-                    <div class="feature-item d-flex">
-                        <i class="ti-book"></i>
-                        <div class="ml-20">
-                            <h4>Add Notes</h4>
-                            <p>
-                                feature allows users to create new notes, providing a platform for organized content creation and management.
-                            </p>
-                        </div>
-                    </div>
+
+
+    <!-- ================- Start About Area ================= -->
+    <section class="about-area section-gap">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-5 col-md-6 about-left">
+                    <img class="img-fluid" src="img/cx-insight-YloghyfD7e8-unsplash.jpg" alt="">
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <div class="feature-item d-flex">
-                        <i class="ti-cup"></i>
-                        <div class="ml-20">
-                            <h4>User Interactions</h4>
-                            <p>
-                                Enables users to share their notes with others, fostering teamwork and knowledge exchange.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <div class="feature-item d-flex border-right-0">
-                        <i class="ti-desktop"></i>
-                        <div class="ml-20">
-                            <h4>Note Management</h4>
-                            <p>
-                                Effortlessly manage notes, including viewing, editing, and deleting, for efficient organization.
-                            </p>
-                        </div>
+                <div class="offset-lg-1 col-lg-5 col-md-12 about-right">
+                    <h1>
+                        About
+                    </h1>
+                    <div>
+                        <p>
+                            This website serves as a platform for users to organize and manage their notes effectively. It provides a user-friendly interface for users to create, edit, and delete notes. Each note can have a title, subject, content, and optional file attachments. Users can view detailed information about each note, including its creation date and the user who created it. Additionally, users have access to a dashboard page where they can access various functionalities related to note management.
+                        </p>
+                        <p>
+                            Overall, the website aims to streamline the note-taking process and provide users with a centralized platform to store and organize their notes efficiently. Whether for personal use or collaboration with others, the website offers essential features to meet the note-taking needs of its users.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ================ End Feature Area ================= -->
-
-    <!-- ================ Start Popular Course Area ================= -->
-    <section class="popular-course-area section-gap">
-        <div class="container-fluid">
-            <div class="row justify-content-center section-title">
-                <div class="col-lg-12">
-                    <h2>
-                        Your Notes
-                    </h2>
-                    <p>
-                        Here are the notes you have uploaded:
-                    </p>
-                </div>
-            </div>
-            <div class="owl-carousel popuar-course-carusel">
-                <?php
-                // Loop through your notes and display them
-                while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                    <div class="single-popular-course">
-                        <div class="thumb">
-                            <!-- Dummy image as cover image -->
-                            <img class="f-img img-fluid mx-auto" src="img/dummy-image.jpg" alt="" />
-                        </div>
-                        <div class="details">
-                            <div class="d-flex justify-content-between mb-20">
-                                <!-- Display subject -->
-                                <p class="name"><?php echo $row['subject']; ?></p>
-                            </div>
-                            <!-- Make the note title a link to the manage notes page -->
-                            <a href="manage_notes.php?note_id=<?php echo $row['note_id']; ?>">
-                                <!-- Display title of the note -->
-                                <h4><?php echo $row['title']; ?></h4>
-                            </a>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ================ End Popular Course Area ================= -->
+    <!-- ================- End About Area ================= -->
 
 
     <!-- ================ Start Feature Area ================= -->
@@ -261,9 +201,11 @@ if (isset($_POST['logout'])) {
             </div>
         </div>
     </section>
+    <!-- ================ End Feature Area ================= -->
 
+    <!-- ================ start footer Area ================= -->
     <?php
-    include("footer.php");
+    include('footer.php');
     ?>
 </body>
 
