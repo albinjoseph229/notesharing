@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li><a href="dashboard.php">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="about-us.php">About</a></li>
                     <li><a href="add_note.php">Add Notes</a></li>
                     <li><a href="manage_notes.php">Manage Notes</a></li>
                     <li><a href="my-followers.php">My Followers</a></li>

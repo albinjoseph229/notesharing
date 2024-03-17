@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- meta character set -->
 	<meta charset="UTF-8" />
 	<!-- Site Title -->
-	<title>Contacts</title>
+	<title>Add Notes</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
 	<!--

@@ -71,7 +71,7 @@ if (isset($_POST['logout'])) {
 
 <body>
     <?php
-    include ('header.php');
+    include('header.php');
     ?>
     <!-- ================ start banner Area ================= -->
     <section class="home-banner-area">
@@ -82,9 +82,7 @@ if (isset($_POST['logout'])) {
                         Welcome, <?php echo isset($user['username']) ? $user['username'] : ''; ?>
                     </h1>
                     <p class="mx-auto text-white mt-20 mb-40">
-                        In the history of modern astronomy, there is probably no one
-                        greater leap forward than the building and launch of the space
-                        telescope known as the Hubble.
+                    This website offers a user-friendly note-taking experience with authentication and customizable dashboards. Easily manage, view, and edit notes on any device for enhanced productivity
                     </p>
                 </div>
                 <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
@@ -103,10 +101,9 @@ if (isset($_POST['logout'])) {
                     <div class="feature-item d-flex">
                         <i class="ti-book"></i>
                         <div class="ml-20">
-                            <h4>New Classes</h4>
+                            <h4>Add Notes</h4>
                             <p>
-                                In the history of modern astronomy, there is probably no one
-                                greater leap forward.
+                                feature allows users to create new notes, providing a platform for organized content creation and management.
                             </p>
                         </div>
                     </div>
@@ -115,10 +112,9 @@ if (isset($_POST['logout'])) {
                     <div class="feature-item d-flex">
                         <i class="ti-cup"></i>
                         <div class="ml-20">
-                            <h4>Top Courses</h4>
+                            <h4>User Interactions</h4>
                             <p>
-                                In the history of modern astronomy, there is probably no one
-                                greater leap forward.
+                                Enables users to share their notes with others, fostering teamwork and knowledge exchange.
                             </p>
                         </div>
                     </div>
@@ -127,10 +123,9 @@ if (isset($_POST['logout'])) {
                     <div class="feature-item d-flex border-right-0">
                         <i class="ti-desktop"></i>
                         <div class="ml-20">
-                            <h4>Full E-Books</h4>
+                            <h4>Note Management</h4>
                             <p>
-                                In the history of modern astronomy, there is probably no one
-                                greater leap forward.
+                                Effortlessly manage notes, including viewing, editing, and deleting, for efficient organization.
                             </p>
                         </div>
                     </div>
@@ -183,66 +178,6 @@ if (isset($_POST['logout'])) {
 
     <!-- ================ End Popular Course Area ================= -->
 
-    <!-- ================ Start Video Area ================= -->
-    <section class="video-area section-gap-bottom">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5">
-                    <div class="section-title text-white">
-                        <h2 class="text-white">
-                            Watch Our Trainers <br />
-                            in Live Action
-                        </h2>
-                        <p>
-                            In the history of modern astronomy, there is probably no one
-                            greater leap forward than the building and launch of the space
-                            telescope known as the Hubble.
-                        </p>
-                    </div>
-                </div>
-                <div class="offset-lg-1 col-md-6 video-left">
-                    <div class="owl-carousel video-carousel">
-                        <div class="single-video">
-                            <div class="video-part">
-                                <img class="img-fluid" src="img/video-img.jpg" alt="" />
-                                <div class="overlay"></div>
-                                <a class="popup-youtube play-btn" href="https://www.youtube.com/watch?v=VufDd-QL1c0">
-                                    <img class="play-icon" src="img/play-btn.png" alt="" />
-                                </a>
-                            </div>
-                            <h4 class="text-white mb-20 mt-30">
-                                Learn Angular js Course for Legendary Persons
-                            </h4>
-                            <p class="text-white mb-20">
-                                In the history of modern astronomy, there is probably no one
-                                greater leap forward than the building and launch of the space
-                                telescope known as the Hubble.
-                            </p>
-                        </div>
-
-                        <div class="single-video">
-                            <div class="video-part">
-                                <img class="img-fluid" src="img/video-img.jpg" alt="" />
-                                <div class="overlay"></div>
-                                <a class="popup-youtube play-btn" href="https://www.youtube.com/watch?v=VufDd-QL1c0">
-                                    <img class="play-icon" src="img/play-btn.png" alt="" />
-                                </a>
-                            </div>
-                            <h4 class="text-white mb-20 mt-30">
-                                Learn Angular js Course for Legendary Persons
-                            </h4>
-                            <p class="text-white mb-20">
-                                In the history of modern astronomy, there is probably no one
-                                greater leap forward than the building and launch of the space
-                                telescope known as the Hubble.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ================ End Video Area ================= -->
 
     <!-- ================ Start Feature Area ================= -->
     <section class="other-feature-area">
@@ -254,23 +189,16 @@ if (isset($_POST['logout'])) {
                             Features That <br />
                             Can Avail By Everyone
                         </h2>
-                        <p>
-                            If you are looking at blank cassettes on the web, you may be
-                            very confused at the difference in price. You may see some for
-                            as low as $.17 each.
-                        </p>
+                        <p>Our website offers a user-friendly note-taking experience with authentication and customizable dashboards. Easily manage, view, and edit notes on any device for enhanced productivity</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="other-feature-item">
                         <i class="ti-key"></i>
-                        <h4>Lifetime Access</h4>
+                        <h4>User Authentication</h4>
                         <div>
                             <p>
-                                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                                incididunt labore.
+                                Users can log in to access the features of the website. If not logged in, they are redirected to the login page.
                             </p>
                         </div>
                     </div>
@@ -278,13 +206,10 @@ if (isset($_POST['logout'])) {
                 <div class="col-lg-4 col-md-6 mt--160">
                     <div class="other-feature-item">
                         <i class="ti-files"></i>
-                        <h4>Source File Included</h4>
+                        <h4>Dashboard</h4>
                         <div>
                             <p>
-                                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                                incididunt labore.
+                                Users have a dashboard page where they can access various functionalities.
                             </p>
                         </div>
                     </div>
@@ -292,13 +217,10 @@ if (isset($_POST['logout'])) {
                 <div class="col-lg-4 col-md-6 mt--260">
                     <div class="other-feature-item">
                         <i class="ti-medall-alt"></i>
-                        <h4>Student Membership</h4>
+                        <h4>Manage Notes</h4>
                         <div>
                             <p>
-                                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                                incididunt labore.
+                                Users can manage their notes, including viewing, editing, and deleting them.
                             </p>
                         </div>
                     </div>
@@ -306,13 +228,10 @@ if (isset($_POST['logout'])) {
                 <div class="col-lg-4 col-md-6">
                     <div class="other-feature-item">
                         <i class="ti-briefcase"></i>
-                        <h4>35000+ Courses</h4>
+                        <h4>View Note Details</h4>
                         <div>
                             <p>
-                                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                                incididunt labore.
+                                Users can view detailed information about a specific note, including its title, subject, content, and file attachments.
                             </p>
                         </div>
                     </div>
@@ -320,13 +239,10 @@ if (isset($_POST['logout'])) {
                 <div class="col-lg-4 col-md-6 mt--160">
                     <div class="other-feature-item">
                         <i class="ti-crown"></i>
-                        <h4>Expert Mentors</h4>
+                        <h4>Navigation Links:</h4>
                         <div>
                             <p>
-                                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                                incididunt labore.
+                                The website includes navigation links to facilitate easy movement between different pages, such as the home page, manage notes page, and note details page.
                             </p>
                         </div>
                     </div>
@@ -334,13 +250,10 @@ if (isset($_POST['logout'])) {
                 <div class="col-lg-4 col-md-6 mt--260">
                     <div class="other-feature-item">
                         <i class="ti-headphone-alt"></i>
-                        <h4>Live Supports</h4>
+                        <h4>Responsive Design</h4>
                         <div>
                             <p>
-                                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                                incididunt labore.
+                                The website is designed to be responsive, ensuring that it displays properly and is usable across various devices and screen sizes.
                             </p>
                         </div>
                     </div>
@@ -541,9 +454,9 @@ if (isset($_POST['logout'])) {
         </div>
     </section>
     <!-- ================ End Blog Post Area ================= -->
-<?php
-include("footer.php");
-?>
+    <?php
+    include("footer.php");
+    ?>
 </body>
 
 </html>
