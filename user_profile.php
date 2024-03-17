@@ -1,5 +1,9 @@
 <?php
+// Include database connection
 require_once 'db_connection.php';
+
+// Start session
+session_start();
 
 // Initialize follow_button variable
 $follow_button = '';
@@ -40,10 +44,13 @@ if (isset($_GET['user_id'])) {
         }
     } else {
         // User not found
-        echo "User not found.";
+        $_SESSION['error_message'] = "User not found.";
+        header("Location: search_users.php");
+        exit();
     }
 } else {
     // Redirect to search page if user_id is not provided
+    $_SESSION['error_message'] = "User ID is missing.";
     header("Location: search_users.php");
     exit();
 }
@@ -80,8 +87,20 @@ if (isset($_GET['user_id'])) {
 </head>
 
 <body>
+    <?php include('header.php'); ?>
+
     <?php
-    include('header.php');
+    // Check for error message and display it
+    if (isset($_SESSION['error_message'])) {
+        echo "<div class='error-message'>{$_SESSION['error_message']}</div>";
+        unset($_SESSION['error_message']); // Remove the error message from session after displaying
+    }
+
+    // Check for success message and display it
+    if (isset($_SESSION['success_message'])) {
+        echo "<div class='success-message'>{$_SESSION['success_message']}</div>";
+        unset($_SESSION['success_message']); // Remove the success message from session after displaying
+    }
     ?>
 
     <!-- ================ start banner Area ================= -->
@@ -108,6 +127,19 @@ if (isset($_GET['user_id'])) {
             </div>
         </div>
     </section>
+
+    <section>
+        <div class="container">
+            <h1>User Profile</h1>
+            <br>
+            <p><strong>Username:</strong> <?php echo $user['username']; ?></p>
+            <p><strong>Email:</strong> <?php echo $user['email']; ?></p>
+            <p><strong>Joined Date:</strong> <?php echo $user['created_at']; ?></p>
+            <!-- Add more user details here as needed -->
+
+
+        </div>
+    </section>
     <!-- Popular Course Section -->
     <section class="popular-course-area section-gap">
         <div class="container-fluid">
@@ -129,7 +161,8 @@ if (isset($_GET['user_id'])) {
                         echo "<div class='single-popular-course'>";
                         echo "<div class='details'>";
                         echo "<div class='d-flex justify-content-between mb-20'>";
-                        echo "<h4 class='name'>" . $note['subject'] . "</h4>";
+                        // Modify this line to add anchor tag with href to note-details.php
+                        echo "<h4 class='name'><a href='note-details.php?note_id=" . $note['note_id'] . "'>" . $note['subject'] . "</a></h4>";
                         echo "</div>";
                         echo "<p>" . $note['title'] . "</p>";
                         echo "</div>";
@@ -145,46 +178,9 @@ if (isset($_GET['user_id'])) {
         </div>
     </section>
 
+
     <!-- ================ End banner Area ================= -->
-    <section>
-        <div class="container">
-            <h1>User Profile</h1>
-            <p><strong>Username:</strong> <?php echo $user['username']; ?></p>
-            <p><strong>Email:</strong> <?php echo $user['email']; ?></p>
-            <!-- Add more user details here as needed -->
 
-            <!-- Display follow button -->
-            <?php echo $follow_button; ?>
-
-            <h2>Uploaded Notes</h2>
-            <?php
-            // Query the database to retrieve notes uploaded by the user
-            $notes_query = "SELECT * FROM notes WHERE user_id = $user_id";
-            $notes_result = mysqli_query($conn, $notes_query);
-
-            // Check if user has uploaded notes
-            if (mysqli_num_rows($notes_result) > 0) {
-                while ($note = mysqli_fetch_assoc($notes_result)) {
-                    echo "<div class='note'>";
-                    echo "<h3>Title: " . $note['title'] . "</h3>";
-                    echo "<p>Content: " . $note['content'] . "</p>";
-
-                    // Check if file is uploaded
-                    if (!empty($note['file_path'])) {
-                        // Display file with download link
-                        $file_path = $note['file_path'];
-                        $file_name = basename($file_path);
-                        echo "<p>File: <a href='$file_path' download='$file_name'>$file_name</a></p>";
-                    }
-
-                    echo "</div>";
-                }
-            } else {
-                echo "<p>No notes uploaded by this user.</p>";
-            }
-            ?>
-        </div>
-    </section>
     <?php
     include("footer.php");
     ?>

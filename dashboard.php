@@ -22,7 +22,7 @@ $query = "SELECT * FROM notes WHERE user_id = $user_id";
 $result = mysqli_query($conn, $query);
 
 // Fetch the list of people you are following
-$following_query = "SELECT * FROM following WHERE follower_id = $user_id";
+$following_query = "SELECT * FROM follows WHERE follower_id = $user_id";
 $following_result = mysqli_query($conn, $following_query);
 
 // Logout functionality

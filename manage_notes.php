@@ -78,7 +78,7 @@ if (!$result) {
 <body>
     <!-- Header -->
     <?php
-    include ('header.php');
+    include('header.php');
     ?>
     <section class="banner-area">
         <div class="container">
@@ -106,7 +106,7 @@ if (!$result) {
     <section class="contact-page-area section-gap">
         <div class="container">
             <h1>Your Notes</h1>
-
+            <br>
             <div style="margin: 0 auto;">
                 <table style="width: 100%;"> <!-- Set the width of the table to 100% -->
                     <tr>

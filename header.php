@@ -15,8 +15,10 @@
                         <li><a href="about.html">About</a></li>
                         <li><a href="add_note.php">Add Notes</a></li>
                         <li><a href="manage_notes.php">Manage Notes</a></li>
+                        <li><a href="change-password.php">Change Password</a></li>
                         <li><a href="logout.php">Logout</a></li>
-                        <!-- Dropdown -->
+
+                        <!-- Dropdown
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                                 Pages
@@ -25,7 +27,7 @@
                                 <a class="dropdown-item" href="elements.html">Elements</a>
                                 <a class="dropdown-item" href="course-details.html">Course Details</a>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                                 Blog
