@@ -121,7 +121,7 @@ if (isset($_GET['user_id'])) {
                         <span class="box">
                             <a href="dashboard.php">Home </a>
                             <i class="lnr lnr-arrow-right"></i>
-                            <a href="manage_notes.php">Serch</a>
+                            <a href="search_users.php">Serch</a>
                             <i class="lnr lnr-arrow-right"></i>
                             <a href='#'>User profile</a>
                         </span>
