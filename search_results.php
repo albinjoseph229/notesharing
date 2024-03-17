@@ -132,15 +132,12 @@ if (!$result) {
                             echo "<td>{$row['created_at']}</td>"; // Display joined date
                             // Add a button to visit the user's profile
                             echo "<td>";
-                            echo "<form method='post' action='follow.php'>";
-                            echo "<input type='hidden' name='followed_user_id' value='{$row['user_id']}'>";
-                            echo "<button type='submit' name='follow'>Follow</button>";
-                            echo "</form>";
-
+                           
+                            
                             // Add follow button
                             echo "<form method='get' action='user_profile.php'>";
                             echo "<input type='hidden' name='user_id' value='{$row['user_id']}'>";
-                            echo "<button type='submit'>Visit Profile</button>";
+                            echo "<button type='submit'class='btn btn-info'>  Visit Profile</button>";
                             echo "</form>";
                             echo "</td>";
                             echo "</tr>";

@@ -34,11 +34,14 @@ if (isset($_GET['user_id'])) {
                 if (mysqli_num_rows($follow_result) == 0) {
                     $follow_button = "<form method='post' action='follow.php'>";
                     $follow_button .= "<input type='hidden' name='followed_user_id' value='$user_id'>";
-                    $follow_button .= "<button type='submit' name='follow'>Follow</button>";
+                    $follow_button .= "<button type='submit' name='follow' class='btn btn-success'>Follow</button>";
                     $follow_button .= "</form>";
                 } else {
-                    // Already following, show a message
-                    $follow_button = "<p>You are already following this user.</p>";
+                    // Already following, show unfollow option
+                    $follow_button = "<form method='post' action='unfollow.php'>";
+                    $follow_button .= "<input type='hidden' name='followed_user_id' value='$user_id'>";
+                    $follow_button .= "<button type='submit' name='unfollow' class='btn btn-danger'>Unfollow</button>";
+                    $follow_button .= "</form>";
                 }
             }
         }
@@ -137,7 +140,8 @@ if (isset($_GET['user_id'])) {
             <p><strong>Joined Date:</strong> <?php echo $user['created_at']; ?></p>
             <!-- Add more user details here as needed -->
 
-
+            <!-- Display follow button -->
+            <?php echo $follow_button; ?>
         </div>
     </section>
     <!-- Popular Course Section -->
