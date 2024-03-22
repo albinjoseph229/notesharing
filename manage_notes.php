@@ -116,7 +116,6 @@ if (!$result) {
                         <th style="width: 15%;">Title</th>
                         <th style="width: 40%;">Note Details</th> <!-- Increased width for the content column -->
                         <th style="width: 10%;">Added Date</th>
-                        <th style="width: 10%;">Download</th>
                         <th style="width: 5%;">Action</th> <!-- Adjusted width for better alignment -->
                     </tr>
                     <?php
@@ -128,10 +127,7 @@ if (!$result) {
                             echo "<td><a href='note-details.php?note_id=" . $row['note_id'] . "&user_id=" . $user_id . "'>View Details</a></td>";                            // Redirect to note-details.php page
                             echo "<td>" . $row['created_at'] . "</td>";
                             echo "<td>";
-                            // Add download link
-                            echo "<a href='download.php?file=" . urlencode(basename($row['file_path'])) . "'>Download Note</a>";
-                            echo "</td>";
-                            echo "<td>";
+                            
                             // Add delete button with form
                             echo "<form action='delete_note.php' method='POST'>";
                             echo "<input type='hidden' name='note_id' value='" . $row['note_id'] . "' />";

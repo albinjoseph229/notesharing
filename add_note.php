@@ -7,74 +7,75 @@ session_start();
 
 // Check if user is logged in, if not redirect to login page
 if (!isset($_SESSION['user_id'])) {
-	header("Location: login.php");
-	exit();
+    header("Location: login.php");
+    exit();
 }
 
 // Initialize variables
 $title = $content = $subject = '';
+$targetFile = ""; // Default value for target file
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	// Validate and sanitize form inputs
-	$title = htmlspecialchars($_POST['title']);
-	$content = htmlspecialchars($_POST['content']);
-	$subject = htmlspecialchars($_POST['subject']);
+    // Validate and sanitize form inputs
+    $title = htmlspecialchars($_POST['title']);
+    $content = htmlspecialchars($_POST['content']);
+    $subject = htmlspecialchars($_POST['subject']);
 
-	// File upload logic
-	$targetDir = "uploads/";
-	$targetFile = $targetDir . basename($_FILES["file"]["name"]);
-	$uploadOk = 1;
-	$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    // File upload logic
+    if ($_FILES["file"]["size"] > 0) {
+        // File upload logic
+        $targetDir = "uploads/";
+        $targetFile = $targetDir . basename($_FILES["file"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-	// Absolute path to the uploads directory
-	$targetDir = $_SERVER['DOCUMENT_ROOT'] . "/notesharing/uploads/";
+        // Absolute path to the uploads directory
+        $targetDir = $_SERVER['DOCUMENT_ROOT'] . "/notesharing/uploads/";
 
-	// Ensure that the directory exists
-	if (!file_exists($targetDir)) {
-		mkdir($targetDir, 0777, true); // Create the directory recursively
-	}
+        // Ensure that the directory exists
+        if (!file_exists($targetDir)) {
+            mkdir($targetDir, 0777, true); // Create the directory recursively
+        }
 
-	// Destination file path
-	$targetFile = $targetDir . basename($_FILES["file"]["name"]);
+        // Destination file path
+        $targetFile = $targetDir . basename($_FILES["file"]["name"]);
 
-	// Check file size
-	if ($_FILES["file"]["size"] > 50000000) {
-		echo "Sorry, your file is too large.";
-		$uploadOk = 0;
-	}
+        // Check file size
+        if ($_FILES["file"]["size"] > 50000000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
 
-	
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
+                echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    }
 
-	// Check if $uploadOk is set to 0 by an error
-	if ($uploadOk == 0) {
-		echo "Sorry, your file was not uploaded.";
-		// if everything is ok, try to upload file
-	} else {
-		if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
-			echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
+    // Insert data into the database
+    $sql = "INSERT INTO notes (user_id, title, subject, content, file_path) 
+            VALUES (?, ?, ?, ?, ?)";
 
-			// Insert data into the database
-			$sql = "INSERT INTO notes (user_id, title, subject, content, file_path) 
-					VALUES (?, ?, ?, ?, ?)";
+    // Prepare the SQL statement
+    $stmt = $conn->prepare($sql);
 
-			// Prepare the SQL statement
-			$stmt = $conn->prepare($sql);
+    // Bind parameters and execute the statement
+    $stmt->bind_param("issss", $_SESSION['user_id'], $title, $subject, $content, $targetFile);
+    if ($stmt->execute()) {
+        echo "New record inserted successfully.";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 
-			// Bind parameters and execute the statement
-			$stmt->bind_param("issss", $_SESSION['user_id'], $title, $subject, $content, $targetFile);
-			if ($stmt->execute()) {
-				echo "New record inserted successfully.";
-			} else {
-				echo "Error: " . $sql . "<br>" . $conn->error;
-			}
-
-			// Close statement
-			$stmt->close();
-		} else {
-			echo "Sorry, there was an error uploading your file.";
-		}
-	}
+    // Close statement
+    $stmt->close();
 }
 ?>
 

@@ -7,24 +7,24 @@ session_start();
 
 // Check if user is logged in, if not redirect to login page
 if (!isset($_SESSION['user_id'])) {
-	header("Location: login.php");
-	exit();
+    header("Location: login.php");
+    exit();
 }
 
 // Check if note ID is provided
 if (!isset($_GET['note_id'])) {
-	header("Location: manage_notes.php"); // Redirect to manage notes page if note ID is not provided
-	exit();
+    header("Location: manage_notes.php"); // Redirect to manage notes page if note ID is not provided
+    exit();
 }
 
 // Get the note ID and user ID from the URL
 if (isset($_GET['note_id']) && isset($_GET['user_id'])) {
-	$note_id = $_GET['note_id'];
-	$user_id = $_GET['user_id'];
+    $note_id = $_GET['note_id'];
+    $user_id = $_GET['user_id'];
 } else {
-	// If either note_id or user_id is not provided in the URL, redirect to manage_notes.php
-	header("Location: manage_notes.php");
-	exit();
+    // If either note_id or user_id is not provided in the URL, redirect to manage_notes.php
+    header("Location: manage_notes.php");
+    exit();
 }
 
 // Query database to fetch note details
@@ -34,8 +34,8 @@ $result = mysqli_query($conn, $query);
 
 // Check if the query was successful and note exists
 if (!$result || mysqli_num_rows($result) == 0) {
-	header("Location: manage_notes.php"); // Redirect to manage notes page if note does not exist
-	exit();
+    header("Location: manage_notes.php"); // Redirect to manage notes page if note does not exist
+    exit();
 }
 
 // Fetch note details
@@ -50,7 +50,7 @@ $user_result = mysqli_query($conn, $user_query);
 
 // Check if the query was successful and user exists
 if ($user_result && mysqli_num_rows($user_result) > 0) {
-	$user = mysqli_fetch_assoc($user_result);
+    $user = mysqli_fetch_assoc($user_result);
 }
 ?>
 <!DOCTYPE html>
@@ -190,12 +190,14 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
                         <!-- Post Content -->
                         <div class="col-lg-9 col-md-9">
                             <h3 class="mt-20 mb-20"><?php echo $note['title']; ?></h3>
-                            <h4 class="mt-20 mb-20"><?php echo $note['subject']; ?></h4>
+                            <h6 class="mt-20 mb-20"><?php echo $note['subject']; ?></h6>
                             <p class="excert"><?php echo $note_content; ?></p>
+                            <hr>
                             <!-- Provide download link for the file -->
                             <?php if (!empty($note['file_path'])) : ?>
-                                <p>File Name: <?php echo basename($note['file_path']); ?></p>
-                                <a href="download.php?file=<?php echo urlencode($note['file_path']); ?>" download>Download File</a>
+                                <h6>File Name: <?php echo basename($note['file_path']); ?></h6>
+                                <br>
+                                <button class="btn btn-outline-success" onclick="window.location.href='download.php?file=<?php echo urlencode($note['file_path']); ?>'">Download File</button>
                             <?php endif; ?>
                         </div>
                     </div>
