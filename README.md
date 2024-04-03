@@ -10,18 +10,22 @@ User Authentication:
 
 Users can register and log in to their accounts securely. 🔒
 Authentication mechanisms ensure user data privacy and security. 🔐
+
 Note Management:
 
 Users can create, edit, and delete notes based on their preferences. 📝
 Each note can include a title, subject, content, and optional file attachments. 📎
+
 File Upload and Download:
 
 Users can upload files (e.g., documents, images) to attach to their notes. 📤
 Download functionality allows users to retrieve attached files. 📥
+
 Dashboard:
 
 Users have access to a personalized dashboard where they can manage their notes effectively. 🖥️
 The dashboard provides quick access to essential functionalities and features. 📊
+
 Responsive Design:
 
 The platform is designed with a responsive layout, ensuring optimal viewing and usability across various devices and screen sizes. 📱💻
