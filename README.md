@@ -1,10 +1,10 @@
-Note Sharing Platform - README 📝
+<h3>Note Sharing Platform - README 📝</h3>
 <hr>
-Description:
+<h2>Description:</h2>
 
 The Note Sharing Platform is a web application designed to facilitate the organization and management of notes. It provides users with a centralized platform to create, edit, and share notes efficiently. The platform aims to streamline the note-taking process, making it easier for users to organize their thoughts, collaborate with others, and access their notes from any device with internet connectivity.
 <hr>
-Features: 🚀
+<h2>Features: 🚀</h2>
 
 User Authentication:
 
@@ -26,7 +26,7 @@ Responsive Design:
 
 The platform is designed with a responsive layout, ensuring optimal viewing and usability across various devices and screen sizes. 📱💻
 <hr>
-Installation: 🛠️
+<h2>Installation: 🛠️</h2>
 
 Clone the repository:
 bash
