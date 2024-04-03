@@ -25,6 +25,7 @@ The dashboard provides quick access to essential functionalities and features. �
 Responsive Design:
 
 The platform is designed with a responsive layout, ensuring optimal viewing and usability across various devices and screen sizes. 📱💻
+<hr>
 Installation: 🛠️
 
 Clone the repository:
